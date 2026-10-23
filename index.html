@@ -120,6 +120,14 @@
     #mx td:first-child, #ax td:first-child { min-width: 180px; }
     code { font-family: ui-monospace, Menlo, monospace; font-size: 0.88em; }
 
+
+    /* polish: aligned inputs, chart label halo, next-step link */
+    .inputs, .adv { align-items: end; }
+    #chart .cap { paint-order: stroke; stroke: var(--paper-raised); stroke-width: 4px; stroke-linejoin: round; }
+    .next-step { border: 1px solid var(--rule); border-left: 4px solid var(--ink); background: var(--paper-raised); padding: 14px 16px; margin: 24px 0 0; }
+    .next-step .k { color: var(--ink-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; }
+    .next-step a { font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; text-transform: lowercase; }
+    .next-step p { margin: 4px 0 0; color: var(--ink-muted); font-size: 0.92rem; }
   </style>
 </head>
 <body>
@@ -132,12 +140,12 @@
 
     <section class="panel">
       <div class="inputs">
-        <label class="field">Your brand (as written in the list below)<input type="text" id="you"></label>
-        <label class="field">Date you collected the answers<input type="text" id="date" maxlength="30"></label>
-        <label class="field">Confidence<select id="c"><option value="90">90%</option><option value="95" selected>95%</option></select></label>
+        <label class="field">Your brand (as written in the list below)<input autocomplete="off" type="text" id="you"></label>
+        <label class="field">Date you collected the answers<input autocomplete="off" type="text" id="date" maxlength="30"></label>
+        <label class="field">Confidence<select autocomplete="off" id="c"><option value="90">90%</option><option value="95" selected>95%</option></select></label>
       </div>
       <label class="field" style="margin-top:12px">Brands to track, one per line. Add other spellings after an equals sign
-        <textarea id="brands" rows="6" spellcheck="false" style="font-family: ui-monospace, Menlo, monospace; font-size: .9rem"></textarea></label>
+        <textarea autocomplete="off" id="brands" rows="6" spellcheck="false" style="font-family: ui-monospace, Menlo, monospace; font-size: .9rem"></textarea></label>
       <p class="hint">Example line: <code>Fizzo = fizzo cola, fizzo zero</code>. Matching ignores case and matches whole words only. Include every brand you would count as a competitor.</p>
     </section>
 
@@ -145,20 +153,20 @@
       <h2>1. Make the prompts</h2>
       <p class="hint" style="margin-top:0">Each prompt should be a situation where someone might reach for the category, written without any brand name in it. Those situations are your category entry points.</p>
       <div class="inputs">
-        <label class="field">Category<input type="text" id="cat" maxlength="50"></label>
+        <label class="field">Category<input autocomplete="off" type="text" id="cat" maxlength="50"></label>
       </div>
       <label class="field" style="margin-top:12px">Situations, one per line
-        <textarea id="sit" rows="4" spellcheck="false"></textarea></label>
+        <textarea autocomplete="off" id="sit" rows="4" spellcheck="false"></textarea></label>
       <div class="actions"><button id="gen" type="button">Make prompts</button><button id="copyprompts" type="button">Copy prompts</button><span id="copied2" class="hint" style="margin-left:4px"></span></div>
       <label class="field" style="margin-top:12px">Prompts to ask
-        <textarea id="prompts" rows="6" readonly spellcheck="false"></textarea></label>
+        <textarea autocomplete="off" id="prompts" rows="6" readonly spellcheck="false"></textarea></label>
       <p class="hint">Ask every prompt, in a fresh chat, in each assistant you want to check, and repeat each one 3 or more times. Answers change from run to run.</p>
     </section>
 
     <section class="panel">
       <h2>2. Paste the answers</h2>
       <label class="field">Start each answer with a line like <code>=== Assistant name | the prompt</code>, then paste the answer text
-        <textarea id="data" rows="14" spellcheck="false" style="font-family: ui-monospace, Menlo, monospace; font-size: .85rem"></textarea></label>
+        <textarea autocomplete="off" id="data" rows="14" spellcheck="false" style="font-family: ui-monospace, Menlo, monospace; font-size: .85rem"></textarea></label>
       <div class="actions"><button id="sample" type="button">Load the made-up sample</button><span class="hint" style="margin-left:4px">The sample uses invented brands and invented answers.</span></div>
       <div id="err" role="alert"></div>
     </section>
@@ -234,6 +242,7 @@ range = d +/- z x SE</div>
       <p><b>This does not show sales.</b> No source found shows that being mentioned by an assistant moves sales. It is a measure of presence in a new place buyers look, nothing more.</p>
     </section>
 
+    <section class="next-step"><div class="k">next</div><a href="https://cep-scorer.benjads.com/">cep scorer</a><p>The same idea with a buyer survey instead of an assistant.</p></section>
     <footer class="site-foot">
       <picture><source media="(prefers-color-scheme: dark)" srcset="logo/benjads-footnote-paper-transparent.svg"><img src="logo/benjads-footnote-olive-transparent.svg" alt="ben.j.ads"></picture>
       <p><span class="tag">1</span>Borrows from mental availability and category entry points (Romaniuk, Sharp). A proxy, not a buyer survey. Marketing science, given away free, for people who spend money.</p>
